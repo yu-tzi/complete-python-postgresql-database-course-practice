@@ -1,4 +1,4 @@
-from database import add_task, get_tasks
+from database import create_table, add_task, get_tasks
 
 menu = """Pleas select one of the following options:
 1. Add a new task
@@ -10,8 +10,6 @@ Your Selection:
 
 welcome_message = "Welcome to the Todo App!"
 exit_message = "Thank you for using the Todo App. Bye!"
-
-print(welcome_message)
 
 
 def prompt_new_task():
@@ -25,6 +23,11 @@ def view_all_tasks():
     for task in task_list:
         print(f"Task: {task['task']}, Date: {task['date']}")
 
+
+# execution starts here
+
+print(welcome_message)
+create_table()
 
 user_input = input(menu)
 while user_input != "3":
