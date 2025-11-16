@@ -1,6 +1,7 @@
 import sqlite3
 
 connection = sqlite3.connect("database.db")
+connection.row_factory = sqlite3.Row
 task_list = []
 
 
@@ -22,4 +23,13 @@ def add_task(task, date):
 
 
 def get_tasks():
-    return task_list
+    cursor = connection.execute("SELECT * FROM tasks;")
+    # connection.execute returns a cursor object
+    # a cursor is used to iterate over the results of a query
+
+    # get single row
+    # cursor.fetchone() # get first row and move the cursor to the next row
+    # cursor.fetchone() # get second row and move the cursor to the next row
+
+    # get all rows
+    return cursor  # return the cursor to the caller to iterate over and the single data is a tuple if connection.row_factory = sqlite3.Row is not set
